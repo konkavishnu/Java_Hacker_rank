@@ -2,10 +2,15 @@ import java.util.Arrays;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
+
+
 
 public class Student_class_streams {
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         
         List<Student> list = Arrays.asList(
@@ -21,8 +26,35 @@ public class Student_class_streams {
     new Student(10, "Shubham", "Pandey", 26, "Male", "Instrumentation Engineering", 2017, "Mumbai", 98));
 
     
+        
 
+        Comparable<String> v = new Comparable<String>() {
+
+            @Override
+            public int compareTo(String name) {
+                
+                return 0;
+            }
+            
+        };
     
+        Consumer<String> con = new Consumer<String>() {
+            public void accept (String name){
+                System.out.println(name);
+            }
+        };
+
+        con.accept("null");
+
+        BiFunction<String,Integer,Integer> By = new BiFunction<String,Integer,Integer>() {
+
+            @Override
+            public Integer apply(String t, Integer u) {
+                
+                return 5 ;
+            }
+            
+        };
 
     // System.out.println(list);
 

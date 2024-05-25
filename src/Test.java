@@ -26,7 +26,11 @@ public class Test {
         //     System.out.println("Empty list");
         // }
 
+        // Set <String> fun = new HashSet<>();
+        
+
         List<Integer> Salary = Arrays.asList(2000,3000,4000);
+        
 
         int A = Salary.stream().mapToInt(Integer::intValue).sum();
 

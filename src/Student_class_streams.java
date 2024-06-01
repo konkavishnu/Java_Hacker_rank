@@ -62,6 +62,10 @@ public class Student_class_streams {
     // System.out.println(list);
 
 
+    List<Integer> numbers = Arrays.asList(123, 45, 101, 789, 12, 321);
+
+    
+
         
     // List<Student> Stud_with_A = list.stream().filter(n -> n.getFirstName().startsWith("A")).toList();
     // System.out.println(Stud_with_A);
@@ -74,10 +78,10 @@ public class Student_class_streams {
 //    List<String> A = list.stream().collect(Collections.frequency(list,n.getDepartmantName)>1);   
 
 
-List<Integer> numbers = Arrays.asList(123, 45, 101, 789, 12, 321);
+List<Integer> numbers1 = Arrays.asList(123, 45, 101, 789, 12, 321);
 
 // Sort the list such that numbers containing "1" come first
-List<Integer> sortedList = numbers.stream()
+List<Integer> sortedList = numbers1.stream()
         .sorted((n1, n2) -> {
             boolean containsOne1 = String.valueOf(n1).contains("1");
             boolean containsOne2 = String.valueOf(n2).contains("1");

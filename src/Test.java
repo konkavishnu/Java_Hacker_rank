@@ -21,6 +21,7 @@ public class Test {
             
         long c =  Eve.stream().count();
         System.out.println(c);
+      
 
         // if(c == 0){
         //     System.out.println("Empty list");

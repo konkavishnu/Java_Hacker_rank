@@ -1,5 +1,6 @@
-import java.util.Arrays;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -26,7 +27,9 @@ public class Student_class_streams {
     new Student(10, "Shubham", "Pandey", 26, "Male", "Instrumentation Engineering", 2017, "Mumbai", 98));
 
     
-        
+        List <Student> ag = list.stream().sorted(Comparator.comparing(Student:: getAge).reversed()).toList();
+
+        System.out.println(ag);
 
         Comparable<String> v = new Comparable<String>() {
 
@@ -71,7 +74,27 @@ public class Student_class_streams {
 //    List<String> A = list.stream().collect(Collections.frequency(list,n.getDepartmantName)>1);   
 
 
+List<Integer> numbers = Arrays.asList(123, 45, 101, 789, 12, 321);
+
+// Sort the list such that numbers containing "1" come first
+List<Integer> sortedList = numbers.stream()
+        .sorted((n1, n2) -> {
+            boolean containsOne1 = String.valueOf(n1).contains("1");
+            boolean containsOne2 = String.valueOf(n2).contains("1");
+            if (containsOne1 && !containsOne2) {
+                return -1; // n1 comes before n2
+            } else if (!containsOne1 && containsOne2) {
+                return 1; // n2 comes before n1
+            } else {
+                return Integer.compare(n1, n2); // Keep original order
+            }
+        })
+        .collect(Collectors.toList());
+
+System.out.println("Sorted list: " + sortedList);
+
    
+
 
    Map<String, Long> countStudentInEachdept = list.stream()
     .collect(Collectors.groupingBy(Student::getDepartmantName, Collectors.counting()));

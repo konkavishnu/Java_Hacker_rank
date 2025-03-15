@@ -1,11 +1,14 @@
 
 import java.util.Arrays;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 
@@ -26,10 +29,23 @@ public class Student_class_streams {
     new Student(9, "Sonu", "Shankar", 27, "Female", "Computer Engineering", 2018, "Karnataka", 7),
     new Student(10, "Shubham", "Pandey", 26, "Male", "Instrumentation Engineering", 2017, "Mumbai", 98));
 
+      
+        list.stream().map(Student::getDepartmantName).forEach(System.out::print);
+
+        List <Student> ag11 = list.stream().sorted(Comparator.comparing(Student:: getAge)).collect(Collectors.toList());
+     
+        
     
-        List <Student> ag = list.stream().sorted(Comparator.comparing(Student:: getAge).reversed()).toList();
+        List <Student> ag = list.stream().sorted(Comparator.comparing(Student:: getAge).reversed()).collect(Collectors.toList());
+
+        list.stream().sorted(Comparator.comparing(Student:: getAge).thenComparing(Student::getFirstName)).collect(Collectors.toList());
+
+        List <Student> ag2 = list.stream().filter(n -> n.getId()>5 && n.getGender().equals("Female") ).collect(Collectors.toList());
 
         System.out.println(ag);
+
+        int[] A = {1,2,3,4,5} ;
+
 
         Comparable<String> v = new Comparable<String>() {
 
@@ -70,18 +86,22 @@ public class Student_class_streams {
     // List<Student> Stud_with_A = list.stream().filter(n -> n.getFirstName().startsWith("A")).toList();
     // System.out.println(Stud_with_A);
 
-    // Map<String , Integer> Sum_Of_id = list.stream().collect(Collectors.groupingBy(Student::getDepartmantName , Collectors.summingInt(Student:: getId)));
-    // System.out.println(Sum_Of_id);    
+    Map<String , Integer> Sum_Of_id = list.stream().collect(Collectors.groupingBy(Student::getDepartmantName , Collectors.summingInt(Student:: getId)));
+    System.out.println("SUM OF ID =="+Sum_Of_id);    
 
 
 
 //    List<String> A = list.stream().collect(Collections.frequency(list,n.getDepartmantName)>1);   
 
+ 
 
-List<Integer> numbers1 = Arrays.asList(123, 45, 101, 789, 12, 321);
+
+    List<Integer> numbers1 = Arrays.asList(123, 45, 101, 789, 12, 321);
+
+  
 
 // Sort the list such that numbers containing "1" come first
-List<Integer> sortedList = numbers1.stream()
+    List<Integer> sortedList = numbers1.stream()
         .sorted((n1, n2) -> {
             boolean containsOne1 = String.valueOf(n1).contains("1");
             boolean containsOne2 = String.valueOf(n2).contains("1");
@@ -95,7 +115,16 @@ List<Integer> sortedList = numbers1.stream()
         })
         .collect(Collectors.toList());
 
-System.out.println("Sorted list: " + sortedList);
+    System.out.println("Sorted list: " + sortedList);
+
+    
+
+
+        String originalString = "Hello, World!";  
+        IntStream charStream = originalString.chars();  
+    
+        Stream<String> charStringStream = charStream.mapToObj(ch -> String.valueOf((char) ch));  
+        String reversedString = charStringStream.reduce((acc, ch) -> ch + acc).orElse(""); 
 
    
 
@@ -103,11 +132,13 @@ System.out.println("Sorted list: " + sortedList);
    Map<String, Long> countStudentInEachdept = list.stream()
     .collect(Collectors.groupingBy(Student::getDepartmantName, Collectors.counting()));
     System.out.println(countStudentInEachdept);
+
+   
     
 
-    System.out.println(countStudentInEachdept.entrySet().stream().filter(n-> n.getKey()=="Mechanical Engineering").toList());
+    System.out.println(countStudentInEachdept.entrySet().stream().filter(n-> n.getKey()=="Mechanical Engineering").collect(Collectors.toList()));
    
-    System.out.println(countStudentInEachdept.keySet().stream().filter(n-> n =="Mechanical Engineering").toList());
+    System.out.println(countStudentInEachdept.keySet().stream().filter(n-> n =="Mechanical Engineering").collect(Collectors.toList()));
 
 
 

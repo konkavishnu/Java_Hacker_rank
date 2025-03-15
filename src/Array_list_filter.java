@@ -14,7 +14,7 @@ public class Array_list_filter {
 
          
 
-         List<String> l3 = Stream.concat(l1.stream(), l2.stream()).distinct().toList(); 
+         // List<String> l3 = Stream.concat(l1.stream(), l2.stream()).distinct().toList(); 
          
          // Arrays.asList("Chennai", "pune", "Bangalore", "Hyderabad", "Agra", null);
          List<String> l6 = new ArrayList<>();
@@ -29,9 +29,9 @@ public class Array_list_filter {
          Set<String> l4 = new HashSet<>();
          l4.add("Name1");
 
-         List<String> l5 = l3.stream().filter(s -> s != null).toList();
+         // List<String> l5 = l3.stream().filter(s -> s != null).toList();
 
-         System.out.println(l5);
+         //System.out.println(l5);
 
          String c = "Something";
         //  StringBuffer sb = new StringBuffer(c);

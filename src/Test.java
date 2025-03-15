@@ -1,12 +1,14 @@
 import java.util.*;
+import java.util.stream.Collectors;
 // import java.util.stream.IntStream;
 // import java.util.function.Function;
 // import java.util.stream.Collectors;
 // import java.util.stream.Stream;
+import java.util.stream.Stream;
 
 public class Test {
 
-
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         
 
@@ -14,7 +16,29 @@ public class Test {
         // List<Integer> L = Arrays.asList(2,1,3);
         // List<String> Str = Arrays.asList("radar");
 
+        String A = "Vishnu";
+
+        String reversed = A.chars().mapToObj(c -> (char)c).reduce("",(s,c) -> c+s , (s1,s2) -> s2+s1);
+
+        System.out.println(reversed);
+
         List<Integer> Eve = Arrays.asList(10,15,8,49,25,98,98,32);
+
+        double out = Eve.stream().mapToInt(Integer:: intValue).sum(); // --> to find sum
+        double out1 = Eve.stream().mapToInt(Integer:: intValue).average().orElse(0); // -> to find average.
+
+        int out5 = Eve.stream().mapToInt(Integer:: intValue).max().orElse(0);
+
+        System.out.println(out1);
+        System.out.println("MAX VALUE IS : "+ out5);
+
+
+        String SD = "Vishnu";
+        String CD = "Vardhan";
+
+        String Fi = SD.concat(CD);
+
+
 
         // Stream.iterate(new int[] {0,1}, B -> new int[] {B[1],B[0]+B[1]} ).limit(10).forEach(i -> System.out.println(Arrays.toString(i)));
        
@@ -31,13 +55,28 @@ public class Test {
         
 
         List<Integer> Salary = Arrays.asList(2000,3000,4000);
+
+        List<Integer> asc = Salary.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+        List<Integer> desc = Salary.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+
+        System.out.println(desc);
+
+        System.out.println(asc);
+
+        List<Integer> comb = Stream.concat(Salary.stream(), Eve.stream()).collect(Collectors.toList());
+
+        System.out.println(comb);
+
+        boolean i = Salary.stream().allMatch(n -> (n%2==0));
+
+        System.out.println(i);
         
 
-        int A = Salary.stream().mapToInt(Integer::intValue).sum();
+        int Sal = Salary.stream().mapToInt(Integer::intValue).sum();
 
-        System.out.println(A);
-        // List<Integer> update = Salary.stream().filter(n -> n==2000).map(n -> n*2000).toList();
-        // System.out.println(update);
+        System.out.println(Sal);
+        List<Integer> update = Salary.stream().filter(n -> n==2000).map(n -> n*2000).collect(Collectors.toList());
+        System.out.println(update);
 
         // Salary.stream().filter(n -> n%2 != 0).toList();
 
